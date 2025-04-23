@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/quanlyduan.css">
+</head>
+
+<header>
+    <nav class="d-flex justify-content-between align-items-center">
+        <h3 class="navh">Quản Lý Dự Án</h3>
+        <div class="navdiv">
+            <a href="">Dự Án</a>
+            <a href="">Nhiệm Vụ Của Tôi</a>
+            <a href="../index.html">Đăng xuất</a>
+        </div>
+    </nav>
+</header>
+<main class="d-flex border flex-column ">
+    <div class="m-4">
+        <h2 class="mb-4">Quản lý nhiệm vụ</h2>
+        <div class="d-flex justify-content-between mb-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">+ Thêm Dự Án</button>
+            <input type="text" class="inputsearch" placeholder="Tìm kiếm dự án">
+        </div>
+        <h3 class="mb-4">Danh Sách Dự Án</h3>
+        <div>
+            <table class="table table-bordered table-hover fs-5 mb-4">
+                <thead>
+                    <tr class="table-dark">
+                        <th class="col-1">ID</th>
+                        <th class="">Tên Dự Án</th>
+                        <th class="text-center col-3">Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-1">1</td>
+                        <td class="col-8">Xay dung wedsite thuong mai dien tu</td>
+                        <td class="d-flex justify-content-between">
+                            <button class="btn btn-warning col-3" type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
+                            <button class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">Xóa</button>
+                            <a class="btn btn-primary col-5">Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-1">1</td>
+                        <td class="col-8">Xay dung wedsite thuong mai dien tu</td>
+                        <td class="d-flex justify-content-between">
+                            <button class="btn btn-warning col-3" type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
+                            <button class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">Xóa</button>
+                            <a class="btn btn-primary col-5">Chi Tiết</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</main>
+<div>
+    <button class="btn">__</button>
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+    <button class="btn">👉</button>
+</div>
+<footer class="ft">
+    <p>&copy; 2025 Team management. All rights reserved</p>
+</footer>
+<!-- modal1 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                        <p class="text-danger">ten danh muc da ton tai</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal 2 -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Xác nhận xóa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa dự án này</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+
+<body>
+
+</body>
+
+</html>
+<!-- <img src="..//" alt=""> -->
