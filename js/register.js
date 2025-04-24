@@ -88,8 +88,10 @@ console.log(confirmPassword == password ? 1 : 2);
     
     if(check == 4){
         form.reset();
+        const s = new Date();
+        let id = s.getTime();
         alert("Chúc mừng bạn đăng ký thành công!")
-        accountList.push({name, email, password});
+        accountList.push({id, name, email, password});
         localStorage.setItem("account", JSON.stringify(accountList));
         location.assign("../phuj/quanlyduan.html");
     }

@@ -1,4 +1,6 @@
-let accountList = JSON.parse(localStorage.getItem("account"))
+let accountList = [{id: 1, email: "nguyentatho14106@gmail.com", password: "12345678", name:"nguyen ta tho"}]
+
+// let accountList = JSON.parse(localStorage.getItem("account"))
 
 let form = document.getElementById("login")
 let eEmail = document.getElementById("eEmail")
@@ -12,6 +14,7 @@ form.addEventListener("submit", (e)=>{
 
     // thông tin đăng nhập phải đúng
     let check = 0;
+    let saveIndex = 0;
     let checkExist = 0;
     if(email == ""){
         eEmail.textContent = "Email không được để trống"
@@ -26,14 +29,16 @@ form.addEventListener("submit", (e)=>{
         check++;
     }
     if(check == 2){
-        accountList.forEach(element =>{
+        accountList.forEach((element, index) =>{
             if(element.password == pass && element.email == email){
                 checkExist++;
+                saveIndex = index
             }
         })
         if(checkExist == 1){
-            location.assign("./quanlyduan.html");
+            sessionStorage.setItem("account", JSON.stringify(accountList[saveIndex]))
             form.reset();
+            location.assign("./quanlyduan.html");
         }else{
             // eEmail.textContent = "Sai email hoặc sai mật khẩu"
             form.password.value = ''

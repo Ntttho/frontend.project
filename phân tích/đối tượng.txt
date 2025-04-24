@@ -1,0 +1,36 @@
+======================
+===================user===================
+1.   id
+2.  name
+3.  email
+4.  password
+======================
+===================task=================
+1. id => id nhiệm vụ
+2. taskname => tên nhiệm vụ
+3. assigneeId => id người được giao nhiệm vụ
+4. projectId => id dự án
+5. assignDate => ngày giao
+6. dueDate => ngày đến hạn
+7. Priority => mức độ ưu tiên
+8. progress => tiến độ
+9. status => trạng thái 
+=======================
+======================project=========================
+1.  id
+2. projectName => tên dự án
+3. member => thành viên 
+====member====
+a. userId => id thành viên
+b. role => vai trò thành viên đó
+=================
+=======================
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+1. Tạo dữ liệu cho danh sách dự án
+2. Hiển thị các dự án theo dữ liệu (chỉ hiển thị sự án nếu người đăng nhập là project owner)
+3. Tên và mô tả dự án không được để trống, tên dự án không được trùng nhau
+4. Tên và mô tả dự án phải có độ dài xác định
+5. Thêm mới dự án qua modal thêm mới dự án
+6. Xóa danh mục qua modal popup xác nận xóa dự án
