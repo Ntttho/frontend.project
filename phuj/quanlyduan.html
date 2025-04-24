@@ -22,7 +22,7 @@
 </header>
 <main class="d-flex border flex-column ">
     <div class="m-4">
-        <h2 class="mb-4">Quản lý nhiệm vụ</h2>
+        <h2 class="mb-4">Quản lý dự án</h2>
         <div class="d-flex justify-content-between mb-4">
             <button onclick="addorchange(-1)" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">+ Thêm
@@ -48,7 +48,7 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
                             <button class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Xóa</button>
-                            <a class="btn btn-primary col-5">Chi Tiết</a>
+                            <a class="btn btn-primary col-5" href="./chitietduan.html">Chi Tiết</a>
                         </td>
                     </tr>
                     <tr>
@@ -59,12 +59,11 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa</button>
                             <button class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Xóa</button>
-                            <a class="btn btn-primary col-5">Chi Tiết</a>
+                            <a class="btn btn-primary col-5" href="./chitietduan.html">Chi tiết</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
     </div>
 </main>
@@ -73,7 +72,7 @@
     <button class="btn">1</button>
     <button class="btn">2</button>
     <button class="btn">3</button>
-    <button class="btn">👉</button>
+    <button class="btn">=></button>
 </div>
 <footer class="ft">
     <p>&copy; 2025 Team management. All rights reserved</p>
@@ -97,14 +96,13 @@
                         <label for="description" class="col-form-label">Mô tả dự án</label>
                         <textarea class="form-control" id="description"></textarea>
                         <p class="text-danger" id="eDescription"></p>
-
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary" id="submit1">Lưu1</button>
-                <button type="button" class="btn btn-primary" id="submit2">Lưu2</button>
+                <button type="button" class="btn btn-primary" id="submit1">Lưu mới </button>
+                <button type="button" class="btn btn-primary" id="submit2">Sửa</button>
             </div>
         </div>
     </div>

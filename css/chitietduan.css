@@ -109,8 +109,8 @@ main{
     align-items: center;
     border-radius: 50px;
     background-color: blueviolet;
-    width: 40px;
-    height: 40px;   
+    width: 50px;
+    height: 50px;   
     color: white;
 }
 .inputsearch{
@@ -134,4 +134,18 @@ td{
 }
 td i{
     margin-bottom: 20px;
+}
+table{
+    font-size: 16px;
+}
+td>span{
+    font-size: 11px !important;
+}
+.date{
+    font-size: 18px;
+    color: #0D6EFD !important;
+    text-align: center;
+}
+.addOrEdit input, .addOrEdit select{
+    width: 462px !important;
 }

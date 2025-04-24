@@ -1,4 +1,4 @@
-// let user = JSON.parse(sessionStorage.getItem("account")) // 1 đối tượng là tài khoản đăng nhập
+// let user = JSON.parse(sessionStorage.getItem("account")) // 1 đối tượng là tài khoản đăng nhập{name email id}
 let project = [
     {id: 1, projectName: "Học html",description: "hãy học kỹ để hiểu từ đầu", member: [{userId: 1, role: "prorject owner"}]},
     {id: 2, projectName: "Học css cho html",description: "học và làm bài tập thật nhiều bạn sẽ thành supper frondendser", member: [{userId: 1, role: "project Developer"}]},
@@ -12,7 +12,7 @@ function showListProject(){
     
     // show list
     let content = ""
-    project.forEach(element =>{
+    project.forEach((element, index) =>{
         // if(user.id == element.member.userId ){
         content += `
                     <tr>
@@ -24,7 +24,7 @@ function showListProject(){
                                 >Sửa</button>
                             <button onclick="deleteProject(${element.id})" class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Xóa</button>
-                            <a class="btn btn-primary col-5">Chi Tiết</a>
+                            <a class="btn btn-primary col-5" href="./chitietduan.html">Chi Tiết</a>
                         </td>
                     </tr>
         `
@@ -43,6 +43,8 @@ function deleteProject(id){
     })
 }
 
+
+// thêm mới và sửa
 function addorchange(x){
     let form = document.getElementById("form")
     let send1 = document.getElementById("submit1")
@@ -95,12 +97,16 @@ function addorchange(x){
                         max = element.id;
                     }
                 })
+                let member = [];
+                // member.push({userId: "", role: """})
+                // 
                 max++;
                 let id = max;
+                form.reset()
                 project.push({id, projectName: newProject, description})
+                console.log("lkajsdlkfj");
+                showListProject();
             }
-
-
 
 
 
@@ -111,5 +117,61 @@ function addorchange(x){
     }else{
         send1.style.display = "none"
         send2.style.display = "block"
+        eDescription.textContent =""
+        eProject.textContent =""
+        // console.log(x);
+        // let checksearch = 0;
+        for(let element of project){
+            if(element.id == x){
+                form.project.value = element.projectName;
+                form.description.value = element.description;
+                break;
+            }
+        }
+
+        // submit => validate => save
+        send2.addEventListener("click",() =>{
+            let checkExist = 1;
+            let check = 0;
+            // validate
+            let projectName = form.project.value
+            let description = form.description.value
+            // name project
+            if(projectName == "" && projectName.length > 50){
+                eProject.textContent = "Không được bỏ trống và giới hạn 50 ký tự"
+            }else{
+                project.forEach((element) => {
+                    if(element.id != x ){
+                        console.log(x, element.id);
+                        if(projectName == element.projectName){
+                            console.log(project, element.projectName);
+                            checkExist = 0;
+                        }
+                    }
+                });
+                if(checkExist == 0){
+                    eProject.textContent = "Tên dự án không được trùng"
+                }else{
+                    eProject.textContent ="";
+                    check ++;
+                }
+            }
+            // description
+            if(description == "" || description.length > 100){
+                eDescription.textContent = "Không được bỏ trống mô tả và giới hạn 100 ký tự"
+            }else{
+                check++;
+            }
+
+            if(check == 2){
+                project.forEach((element, index) => {
+                    if(element.id == x){
+                        project[index].projectName = projectName
+                        project[index].description = description
+                    }
+                });
+                showListProject();
+            }
+        })
     }
 }
