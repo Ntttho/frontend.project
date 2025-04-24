@@ -100,7 +100,7 @@ main{
     margin-bottom: 18px;
 }
 .divdiv2{
-    width: 386px;
+    width: 420px;
     height: 197px;  
 }
 .avt{
@@ -125,4 +125,13 @@ main{
 }
 .div2-3{
     margin-top: 48px ;
+}
+td button{
+    width: 45%;
+}
+td{
+    vertical-align: middle;
+}
+td i{
+    margin-bottom: 20px;
 }

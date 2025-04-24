@@ -16,11 +16,11 @@
         <div class="navdiv">
             <a href="">Dự Án</a>
             <a href="">Nhiệm Vụ Của Tôi</a>
-            <a href="../index.html">Đăng xuất</a>
+            <a href="./login.html">Đăng xuất</a>
         </div>
     </nav>
 </header>
-<main class="d-flex border flex-column ">
+<main class="d-flex flex-column ">
     <div class="d-flex justify-content-between ">
         <div class="divdiv1">
             <div class="d1-1">
@@ -30,13 +30,17 @@
                     sản phẩm.</p>
             </div>
             <div class="d1-2">
-                <button class="btn btn-primary">+ Thêm nhiệm vụ</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">+ Thêm
+                    nhiệm
+                    vụ</button>
 
             </div>
         </div>
         <div class="divdiv2">
             <div class="div2-1 d-flex justify-content-between   ">
-                <h4>Thành viên</h4> <button class="btn border">Thêm Thành viên</button>
+                <h4>Thành viên</h4>
+                <button class="btn border" type="button" data-bs-toggle="modal" data-bs-target="#modal2 ">Thêm Thành
+                    viên</button>
             </div>
             <div class="div2-2 d-flex justify-content-between align-items-center">
                 <div class="avt">AN</div>
@@ -49,7 +53,8 @@
                     <h6>An Nguyễn</h6>
                     <p>Frontend developer</p>
                 </div>
-                <div class="avt btn bg-secondary d-flex text-center">ooo</div>
+                <button class="avt btn bg-secondary d-flex text-center" type="button" data-bs-toggle="modal"
+                    data-bs-target="#modal3">ooo</button>
             </div>
             <div class="div2-3">
                 <select name="" id="">
@@ -59,16 +64,286 @@
             </div>
         </div>
     </div>
+    <div class="mt-4">
+        <h3>Danh Sách Nhiệm Vụ</h3>
+        <div>
+            <table class="table fs-6 fw-normal table-bordered">
+                <thead>
+                    <tr class="table-light">
+                        <th class="">Tên nhiệm vụ</th>
+                        <th class="">Người phụ trách</th>
+                        <th class="">Ưu tiên</th>
+                        <th class="">Ngày bắt đầu</th>
+                        <th class="">Ngày kết thúc</th>
+                        <th class="">Tiến độ</th>
+                        <th class="">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="" colspan="12"><button class="btn"> <span>></span><b> To Do</b></button></th>
+                    </tr>
+                    <tr>
+                        <td>Soạn thảo đề cương dự án</td>
+                        <td>An nguyễn </td>
+                        <td><span class="bg-info p-1 rounded-pill">Thấp</span></td>
+                        <td>02-24</td>
+                        <td>02-27</td>
+                        <td><span class="bg-info p-1 rounded-pill">Đúng tiến độ</span></td>
+                        <td class="d-flex justify-content-between"><button class="btn btn-warning">Sửa</button><button
+                                class="btn btn-danger">Xóa</button></td>
+                    </tr>
+                    <tr>
+                        <td>Soạn thảo đề cương dự án</td>
+                        <td>An nguyễn </td>
+                        <td>
+                            <span class="bg-warning p-1 rounded-pill ">TRung binhf</span>
+                        </td>
+                        <td>02-24</td>
+                        <td>02-27</td>
+                        <td><span class="bg-warning p-1 rounded-pill">có rủi ro</span></td>
+                        <td class="d-flex justify-content-between"><button class="btn btn-warning">Sửa</button><button
+                                class="btn btn-danger">Xóa</button></td>
+                    </tr>
+                    <tr>
+                        <td>Soạn thảo đề cương dự án</td>
+                        <td>An nguyễn </td>
+                        <td><span class="bg-danger p-1 rounded-pill">Cao</span></td>
+                        <td>02-24</td>
+                        <td>02-27</td>
+                        <td><span class="bg-danger p-1 rounded-pill">Trể hạn</span></td>
+                        <td class="d-flex justify-content-between"><button class="btn btn-warning">Sửa</button><button
+                                class="btn btn-danger">Xóa</button></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th colspan="12"><button class="btn"><span>></span> <b>In Progress</b></button> </th>
+                    </tr>
+                    <tr>
+                        <td>Soạn thảo đề cương dự án</td>
+                        <td>An nguyễn </td>
+                        <td>
+                            <span class="bg-warning p-1 rounded-pill ">TRung binhf</span>
+                        </td>
+                        <td>02-24</td>
+                        <td>02-27</td>
+                        <td><span class="bg-warning p-1 rounded-pill">có rủi ro</span></td>
+                        <td class="d-flex justify-content-between"><button class="btn btn-warning">Sửa</button><button
+                                class="btn btn-danger">Xóa</button></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th colspan="12"><button class="btn"><span>></span> <b>Pending</b></button></th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th colspan="12"><button class="btn"><span>></span> <b>Done</b></button></th>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
 
 <footer class=" ft">
     <p>&copy; 2025 Team management. All rights reserved</p>
 </footer>
 
+<!-- modal 1
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Thêm/Sửa nhiệm vụ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- modal 2 -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> -->
+
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm/Sửa Nhiệm Vụ</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="taskname" class="col-form-label">Tên nhiệm vụ</label>
+                        <input type="text" class="form-control" id="taskname">
+                        <p class="text text-danger"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="personInCharge" class="col-form-label">Người phụ trách</label>
+                        <select name="personInCharge" class="form-select" id="">
+                            <option value="null">chọn người phụ trách</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="col-form-label">Người phụ trách</label>
+                        <select name="status" class="form-select" id="">
+                            <option value="null">chọn trạng thái nhiệm vụ</option>
+                            <option value="null"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="asignDate">Ngày bắt đầu</label>
+                        <input type="date" name="asignDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dueDate">Ngày đến hạn</label>
+                        <input type="date" name="dueDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="priority" class="col-form-label">Độ ưu tiên</label>
+                        <select name="priority" class="form-select" id="">
+                            <option value="null">Chọn độ ưu tiên</option>
+                            <option value="1">thấp</option>
+                            <option value="2">Trung bình</option>
+                            <option value="3">cao</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="progress" class="col-form-label">Tiến trình</label>
+                        <select name="progress" class="form-select" id="">
+                            <option value="null">Chọn tiến độ</option>
+                            <option value="1">đúng tiến độ</option>
+                            <option value="2">có rủi ro</option>
+                            <option value="3">Trể hạn</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class=" modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal 2 -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Thành Viên</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="email">
+                        <p class="text text-danger">thành viên đã tồn tại</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rounded-pill" class="col-form-label">Vai trò :</label>
+                        <input type="text" class="form-control" id="role">
+                        <!-- <p class="text text-danger">thành viên đã tồn tại</p> -->
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy </button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal 3 -->
+<div class="modal fade modal-lg" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Thành viên</th>
+                            <th>Vai trò</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="avt">AN</div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <h5>Bach nguyen</h5>
+                                    <p>nguyenvanbach@gmail.com</p>
+                                </div>
+                            </td>
+                            <td class="">
+                                <p class="border">project owner</p>
+                            </td>
+                            <td><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="avt">AN</div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <h5>Bach nguyen</h5>
+                                    <p>nguyenvanbach@gmail.com</p>
+                                </div>
+                            </td>
+                            <td class="">
+                                <p class="border">project owner</p>
+                            </td>
+                            <td><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="avt">AN</div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <h5>Bach nguyen</h5>
+                                    <p>nguyenvanbach@gmail.com</p>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="border">project owner</p>
+                            </td>
+                            <td><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class=" modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
     crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7b988689d5.js" crossorigin="anonymous"></script>
 
 <body>
 

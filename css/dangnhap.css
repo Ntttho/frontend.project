@@ -35,3 +35,18 @@ input, button{
 .divinput{
     margin-top: 25px;
 }
+label{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+}
+input::placeholder{
+    text-align: center ;
+}
+h1{
+    font-size: 52px;
+}
+input, .btn{
+    width: 472px !important;
+
+}

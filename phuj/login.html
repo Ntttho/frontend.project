@@ -16,23 +16,26 @@
         <h1>Đăng nhập</h1>
     </header>
     <main>
-        <form action="" class="form-control row ">
+        <form action="" class="form-control d-flex justify-content-center flex-column align-items-center " id="login">
             <div class="d-flex flex-column  divinput divi1">
-                <label for="name" class="fw-bold form-label">email</label>
-                <input type="text" name="name" placeholder="Địa chỉ email" class="form-control ">
-                <p class="text text-danger">adsads</p>
+                <label for="email" class="fw-bold form-label">Email</label>
+                <input type="text" name="email" placeholder="Địa chỉ email" class="form-control ">
+                <p class="text text-danger eEmail" id="eEmail"></p>
             </div>
             <div class="d-flex flex-column  divi2 divinput">
-                <label for="name" class="fw-bold form-label">email</label>
-                <input type="text" name="name" placeholder="Địa chỉ email" class="form-control ">
-                <p class="text text-danger"></p>
+                <label for="password" class="fw-bold form-label">Mật khẩu</label>
+                <input type="password" name="password" placeholder="Mật khẩu" class="form-control ">
+                <p class="text text-danger " id="ePass"></p>
             </div>
             <div class=" divinput"><button class="btn btn-primary">Đăng nhập</button></div>
             <div class="justify-content-center d-flex">
-                <p class="mt-5">Chưa có tài khoản? <a href="../index.html">Đăng ký</a></p>
+                <p class="mt-5">Chưa có tài khoản? <a href="./register.html">Đăng ký</a></p>
             </div>
         </form>
     </main>
+
+    <script src="../js/dangnhap.js"></script>
 </body>
+<!-- <img src="./quanlyduan.html" alt=""> -->
 
 </html>
