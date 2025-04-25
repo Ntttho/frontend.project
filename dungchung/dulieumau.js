@@ -1,4 +1,4 @@
-
+localStorage.clear();
 
 let account = [{id: 1, email: "nguyentatho14106@gmail.com", password: "12345678", name:"nguyen ta tho"}]
 

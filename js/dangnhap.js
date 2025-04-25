@@ -37,6 +37,7 @@ form.addEventListener("submit", (e)=>{
         })
         if(checkExist == 1){
             sessionStorage.setItem("account", JSON.stringify(accountList[saveIndex]))
+            // acount => {id email name pass}
             form.reset();
             location.assign("./quanlyduan.html");
         }else{
