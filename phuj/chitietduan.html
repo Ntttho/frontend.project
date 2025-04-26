@@ -85,7 +85,7 @@
                         <th class="text-center">Hành động</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="todo">
                     <tr>
                         <th class="" colspan="12"><button class="btn"> <span>></span><b> To Do</b></button></th>
                     </tr>
@@ -103,38 +103,8 @@
                                 class="btn btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalDelete">Xóa</button></td>
                     </tr>
-                    <tr>
-                        <td>Soạn thảo đề cương dự án</td>
-                        <td class="text-center">An nguyễn </td>
-                        <td class="text-center">
-                            <span class="bg-warning p-1 rounded  fw-bold  text-light ">Trung bình</span>
-                        </td>
-                        <td class="date">02-24</td>
-                        <td class="date">02-27</td>
-                        <td class="text-center"><span class="bg-warning p-1 rounded fw-bold  text-light ">có rủi
-                                ro</span></td>
-                        <td class="d-flex justify-content-between"><button class="btn btn-warning" type="button"
-                                data-bs-toggle="modal" data-bs-target="#modal1">Sửa</button><button
-                                class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete">Xóa</button></td>
-                    </tr>
-                    <tr>
-                        <td>Soạn thảo đề cương dự án</td>
-                        <td class="text-center">An nguyễn </td>
-                        <td class="text-center"><span class="bg-danger p-1 rounded fw-bold  text-light ">Cao</span>
-                        </td>
-                        <td class="date">02-24</td>
-                        <td class="date">02-27</td>
-                        <td class="text-center"><span class="bg-danger p-1 rounded fw-bold text-light ">Trể
-                                hạn</span></td>
-                        <td class="d-flex justify-content-between"><button class="btn btn-warning" type="button"
-                                data-bs-toggle="modal" data-bs-target="#modal1">Sửa</button>
-                            <button class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete">Xóa</button>
-                        </td>
-                    </tr>
                 </tbody>
-                <tbody>
+                <tbody id="inProgress">
                     <tr>
                         <th colspan="12"><button class="btn"><span>></span> <b>In Progress</b></button> </th>
                     </tr>
@@ -155,14 +125,14 @@
                         </td>
                     </tr>
                 </tbody>
-                <tbody>
+                <tbody id="pending">
                     <tr>
                         <th colspan="12"><button class="btn"><span>></span> <b>Pending</b></button></th>
                     </tr>
                     <tr>
                     </tr>
                 </tbody>
-                <tbody>
+                <tbody id="done">
                     <tr>
                         <th colspan="12"><button class="btn"><span>></span> <b>Done</b></button></th>
                     </tr>
@@ -212,6 +182,7 @@
                             <option value="null">chọn người phụ trách</option>
                         </select>
                     </div>
+                    <!-- <a href=""></a> -->
                     <div class="mb-3">
                         <label for="status" class="col-form-label">Người phụ trách</label>
                         <select name="status" class="form-select" id="">
@@ -383,7 +354,7 @@
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/7b988689d5.js" crossorigin="anonymous"></script>
-<script src="../js/quanlyduan.js"></script>
+<script src="../js/chitietduan.js"></script>
 
 <body>
 

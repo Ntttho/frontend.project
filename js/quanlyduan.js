@@ -49,7 +49,7 @@ function showListProject(project){
                                 >Sửa</button>
                             <button onclick="deleteProject(${element.id})" class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Xóa</button>
-                            <a class="btn btn-primary col-5" href="./chitietduan.html">Chi Tiết</a>
+                            <a onclick="saveTask(${index})" class="btn btn-primary col-5" href="./chitietduan.html" >Chi Tiết</a>
                         </td>
                     </tr>
         `
@@ -256,3 +256,26 @@ let currentPage = 0;
 // thay vì làm công việc duyệt kiểm tra tồn tại userId trong member của project
 // thì ta có thể tạo ra 1 projectrOwner có chứa tất cả phần tử thuộc quyền sở hưu của user (project owner)
 // từ đấy thao tác với project Owner
+
+
+// luu vao session storage để khi bấm vào chi tiết dự án nó sẽ có dữ liệu của các task trong project
+let task = new Array();
+function saveTask(x){
+    projectList[x].taskList.forEach((e, index) =>{
+        task.push({
+            taskId : index+1,
+            taskName: e.taskName,
+            assigneeId: e.assigneeId,
+            projectId: projectList[x].id,
+            assignDate: e.assignDate,
+            dueDate: e.dueDate,
+            priority: e.priority,
+            progress: e.progress,
+            status: e.status,
+        })
+    })
+    // sessionStorage.clear()
+    sessionStorage.setItem("taskList", JSON.stringify(task))
+    sessionStorage.setItem("indexOfProject", JSON.stringify(x))
+}
+// omg it's so complex i can't understand that
