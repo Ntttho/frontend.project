@@ -1,0 +1,32 @@
+==============================  register.html =============================== 
+form đăng ký ==> tạo ra account
+
+===============================  login.html ============================== 
+form đăng nhập ==> user
+
+===============================  projectManagerment quản lý dự án ============================== 
+form thêm dự án ==> add new project to projectList
+form sửa dự án ==> edit this project (name or description)
+form deleteAcception ==> accept the project (modal confirm)
+input tìm kiếm dự án ==> search projectName: tìm tên dự án
+
+==============================   detailOfProject chi tiết dự án (i)============================== 
+form thêm nhiệm vụ ==> add new task to projectList[i]
+form sửa nhiệm vụ ==> edit this task of projectList[i]
+form thêm thành viên ==> add new member to projectList[i]["member"]
+form show List employee (member of project who have task at that) ==> show list project[i]["member"]
+form xóa nhiệm vụ==> (window.confirm)
+form xóa thành viên ==> (window.confirm)
+
+==============================  MyTaskManagement nhiệm vụ của tôi  ============================== 
+form cập nhập trạng thái ==> modal confirm 
+  
+================================================== end =============================================
+
+
+
+
+
+
+
+

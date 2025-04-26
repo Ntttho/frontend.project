@@ -8,18 +8,29 @@
 ===================task=================
 1. id => id nhiệm vụ
 2. taskname => tên nhiệm vụ
-3. assigneeId => id người được giao nhiệm vụ
+(form)
+3. assigneeId => id người được giao nhiệm vụ 
+(dựa vào user trong account để lấy ra đối tượng id là thành viên của dự án )
 4. projectId => id dự án
+(dựa vào id của các phần tử trong projectList => từ đó lấy ra được các tp của 1 đối tượng dự án)
 5. assignDate => ngày giao
+(form)
 6. dueDate => ngày đến hạn
+(form)
 7. Priority => mức độ ưu tiên
+(form)
 8. progress => tiến độ
+(form)
 9. status => trạng thái 
+(form)
 =======================
 ======================project=========================
-1.  id
-2. projectName => tên dự án
-3. member => thành viên 
+1.  id => 
+(form)
+2. projectName => tên dự án 
+(form)
+3. member => thành viên
+(có sẳn)
 ====member====
 a. userId => id thành viên
 b. role => vai trò thành viên đó

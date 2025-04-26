@@ -1,0 +1,5 @@
+1. trước tiên thì ta đã có 1 mảng chứa tất cả dữ liệu của 1 wedsite ứng dụng
+nó chứa tất cả các dự án của cá nhân và của người khác => projectList
+--- projectList (chứa)=> [{  "id",        "projectName",     "description",        [member: {                      "userId",         "role"}]    } ]
+		        id dự án        tên dự án         mô tả dự án     [các thành viên củadựán]      id thành viên   vai trò của thành viên đấy
+2. duyệt qua tất cả các phần tử của projectList  
