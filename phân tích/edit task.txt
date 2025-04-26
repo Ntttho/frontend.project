@@ -1,0 +1,3 @@
+thay doi tasks 
+projectList[index].taskList = tasks
+==> localstorage.set // luu vao local

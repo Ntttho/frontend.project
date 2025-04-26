@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <button class="avt btn bg-secondary d-flex justify-content-between align-items-center"
-                        type="button" data-bs-toggle="modal" data-bs-target="#modal3">ooo</button>
+                    <button class="avt btn bg-secondary d-flex justify-content-between align-items-center" type="button"
+                        data-bs-toggle="modal" data-bs-target="#modal3">ooo</button>
                 </div>
 
             </div>
@@ -98,14 +98,16 @@
                         <td class="date">02-27</td>
                         <td class="text-center"><span class="bg-success p-1 rounded fw-bold  text-light ">Đúng tiến
                                 độ</span></td>
-                        <td class="d-flex justify-content-between"><button class="btn btn-warning" type="button"
-                                data-bs-toggle="modal" data-bs-target="#modal1">Sửa</button><button
-                                class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete">Xóa</button></td>
+                        <td class="d-flex justify-content-between">
+                            <button class="btn btn-warning" type="button" data-bs-toggle="modal"
+                                data-bs-target="#modal1">Sửa</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete">Xóa</button>
+                        </td>
                     </tr>
                 </tbody>
                 <tbody id="inProgress">
-                    <tr>
+                    <!-- <tr>
                         <th colspan="12"><button class="btn"><span>></span> <b>In Progress</b></button> </th>
                     </tr>
                     <tr>
@@ -123,7 +125,7 @@
                             <button class="btn btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalDelete">Xóa</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tbody id="pending">
                     <tr>
@@ -136,7 +138,7 @@
                     <tr>
                         <th colspan="12"><button class="btn"><span>></span> <b>Done</b></button></th>
                     </tr>
-                    <tr></tr>
+                    <!-- <tr></tr> -->
                 </tbody>
             </table>
         </div>
@@ -331,6 +333,7 @@
     </div>
 </div>
 <!-- modal delete task -->
+
 <div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -344,15 +347,22 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-danger">xác nhận xóa</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDelete">xác nhận
+                    xóa</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
     crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+
 <script src="https://kit.fontawesome.com/7b988689d5.js" crossorigin="anonymous"></script>
 <script src="../js/chitietduan.js"></script>
 
