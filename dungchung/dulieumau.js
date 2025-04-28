@@ -15,16 +15,16 @@ if(i == 0 || i == null || i == undefined){
         {id: 1, projectName: "Xây dựng wedsite thương mại điện tử",
             member: [{userId: 1, role: "project owner"}], 
             taskList: [
-                { assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-3-26", dueDate: "2025-4-1", priority: "thap", progress: "dung tien do", status: "To do"},
+                {taskId: 1, assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
             ],
         },
         {id: 2, projectName: "học lập trình frontend với html css và js", 
             member: [{userId: 1, role: "project owner"}], taskList: [
-            {assigneeId: 1, taskName: "Hoc cham hoc chi",  assignDate: "2025-3-26", dueDate: "2025-4-1", priority: "thap", progress: "dung tien do", status: "To do"},
+            {taskId: 1,assigneeId: 1, taskName: "Hoc cham hoc chi",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
         ],},
-        {id: 3, projectName: "Xây dựng wedsite thương mại điệử",
+        {id: 3, projectName: "Xây dựng wedsite tử than" ,
             member: [{userId: 1, role: "project owner"}],taskList: [
-            {assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-3-26", dueDate: "2025-4-1", priority: "thap", progress: "dung tien do", status: "Pending"},
+            {taskId: 1,assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "Pending"},
         ],},
     ];
 

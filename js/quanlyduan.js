@@ -37,7 +37,13 @@ function showListProject(project){
     
     // show list
     let content = ""
-    project.forEach((element, index) =>{
+    project.forEach((element) =>{
+        let index = 0
+        projectList.forEach((e, i)=>{
+            if(element.id == e.id){
+                index = i
+            }
+        })
         // if(user.id == element.member.userId ){
         content += `
                     <tr>
@@ -104,9 +110,11 @@ function addorchange(x){
     let eDescription = document.getElementById("eDescription")
     
     if(x == -1){
+        eProject.textContent = ""
+        eDescription.textContent = ""
         divAOE.innerHTML = `
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="submit1">Lưu mới</button>
+        <button type="button" class="btn btn-primary"  id="submit1">Lưu mới</button>
         `
         let send1 = document.getElementById("submit1")
         let check = 0;
@@ -172,7 +180,7 @@ function addorchange(x){
     }else{
         divAOE.innerHTML = `
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="submit2">Lưu thay đổi</button>
+        <button type="button" class="btn btn-primary"  id="submit2">Lưu thay đổi</button>
         `
         let send2 = document.getElementById("submit2")
         // sua project name 
@@ -247,15 +255,7 @@ let currentPage = 0;
 function saveTask(index , id){
     // sessionStorage.clear()
     // lưu index ở ss storage
-    let task = project[index].taskList
-    if(task ){
-        sessionStorage.setItem("taskList", JSON.stringify(task))
-    }
-    else{
-        task = new Array()
-        sessionStorage.setItem("taskList", JSON.stringify(task))
-    }
-
+    // index project
     let indexOfProject
     projectList.forEach((element, i) =>{
         if(id == element.id){

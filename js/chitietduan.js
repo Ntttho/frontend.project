@@ -1,21 +1,30 @@
-// du lieu aan dau cho chi tiet du an
-let tasks = JSON.parse(sessionStorage.getItem("taskList"));
-// console.log("tasks: ", tasks);
-// lấy ra index trong ds project để có thể dể thao tác 
+// project
+// projectList
+// indexOfProject
+//account
+
 let indexOfProject = JSON.parse(sessionStorage.getItem("indexOfProject"))
-// lấy ra ds project để có thể lưu lại bất kỳ sự thay đổi nào
-let projectList = JSON.parse(localStorage.getItem("project"))
-// lấy ra ds thành viên đăng kì để dể dàng truy suất thông tin (tên: người phụ trách nhiệm vụ, email: nhăm thêm thành viên vào nhiệm vụ)
 console.log(indexOfProject);
-// console.log(projectList);
-// lấy ra các tài khoản có trong account => nhầm mục đích tìm id và ghi gmail
+
+let projectList = JSON.parse(localStorage.getItem("project"))
 let account = JSON.parse(localStorage.getItem("account"))
 let accountList = JSON.parse(localStorage.getItem("account"))
-// console.log(account);
+
+let tasks = new Array()
+
+if(projectList[indexOfProject].taskList === undefined){
+    projectList[indexOfProject].taskList = new Array()
+    // console.log(1);
+}else{
+    tasks = projectList[indexOfProject].taskList
+    console.log(projectList[indexOfProject].taskList);
+}
+
+console.log(projectList[indexOfProject].taskList)
+console.log(tasks);
 
 
 // lấy ra nút xác nhận xóa html
-
 // show 
 function showListTask (tasks){
     let todo = document.getElementById("todo")
@@ -68,7 +77,7 @@ tasks.forEach((element, index) =>{
                         <td class="text-center"><span class="${(element.progress == "dung tien do" ?"bg-success" : (element.progress == "co rui ro") ? "bg-warning" : (element.progress == "tre han") ?"bg-danger":"")} p-1 rounded fw-bold  text-light ">${element.progress}</span></td>
                         <td onclick="addOrEdit(${element.taskId})" class="d-flex justify-content-between"><button class="btn btn-warning" type="button"
                                 data-bs-toggle="modal" data-bs-target="#modal1">Sửa</button>
-                            <button onclick="deleteTask(${index})" class="btn btn-danger" type="button" data-bs-toggle="modal"
+                            <button onclick="deleteTask(${element.taskId})" class="btn btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#modalDelete">Xóa</button>
                         </td>
                     </tr>`
@@ -132,20 +141,29 @@ function deleteTask (id){
     let btnDelete = document.getElementById("confirmDelete")
     btnDelete.addEventListener("click" , ()=>{
         tasks = tasks.filter(element => element.taskId != id)
-        console.log(tasks);
         projectList[indexOfProject].taskList = tasks
-        console.log(projectList[indexOfProject]);
         showListTask(tasks)
+        localStorage.setItem("project", JSON.stringify(projectList))
     })
 }
 
-
-
 // them va sua tren cung 1 form
 function addOrEdit(x){
-    // sử dụng chung luôn cho cả xóa và sửa
-    let btnA = document.getElementById("btnAddTask")
-    let btnE = document.getElementById("btnEditTask")
+    // tạo btn lưu và hủy
+    let btnEOA = document.getElementById("btnEOA")
+    btnEOA.innerHTML = ""
+
+    /*
+    form-member
+    1. taskname
+    2. selectAssigneeNames
+    3. status
+    4. assignDate
+    5. dueDate
+    6. priority
+    7. progress
+    ====end====
+    */
     let form = document.getElementById("addOrEdit")
     // tao cho select option voi cac thanh vien
     let selectName = document.getElementById("selectAssigneeNames")
@@ -189,14 +207,17 @@ function addOrEdit(x){
     // tao điều kiện vào trường hợp sửa hoặc xóa
     if(x == -1){
         //
-        btnA.style.display = "block"
-        btnE.style.display = "none"
+        btnEOA.innerHTML = `
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button id="btnAddTask" type="button" class="btn btn-primary">Lưu mới</button>
+        `
+        let btnA = document.getElementById("btnAddTask")
         console.log(-1);
         btnA.addEventListener("click", () =>{
 
             // task =>taskid taskname status assigndate duedate priority assigneeName progress (8 là đủ)
             // console.log(form);
-            let taskId = -1;
+            let taskId = 0;
             tasks.forEach(element => {
                 if(element.taskId >= taskId){
                     taskId = element.taskId + 1;
@@ -267,7 +288,7 @@ function addOrEdit(x){
                     check++;    // 4
                     checkdate++
                 }
-            }            
+            }
 
             if(priority == "null"){
                 ePri.textContent = "Không được bỏ trống độ ưu tiên nhiệm vụ"
@@ -295,19 +316,52 @@ function addOrEdit(x){
                 tasks.push({taskId, taskName, assigneeName, status, assignDate, dueDate, priority, progress});
                 console.log(tasks);
                 projectList[indexOfProject].taskList = tasks
+                localStorage.setItem("project", JSON.stringify(projectList))
                 showListTask(tasks)
                 form.reset();
             }
         })
 
         }else{
-            btnA.style.display = "none"
-            btnE.style.display = "block"
-            console.log(1);
-
-            // đưa thông tin, dữ liệu lên form modal
-            console.log("inde",x);
+            console.log(x);
             
+            btnEOA.innerHTML = `
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button id="btnEditTask" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                `
+            let btnE = document.getElementById("btnEditTask")
+            // đưa thông tin, dữ liệu lên form modal
+            for(let e of projectList[indexOfProject].taskList){
+                if(x == e.taskId ){
+                    form.taskname.value = e.taskName
+                    form.selectAssigneeNames.value = e.assigneeName
+                    form.status.value = e.status
+                    form.assignDate.value = e.assignDate
+                    form.dueDate.value = e.dueDate
+                    form.priority.value = e.priority
+                    form.progress.value = e.progress
+                    break
+                }
+            }
+            btnE.addEventListener("click", ()=>{
+                console.log(tasks);
+                //sua nhiem vu
+                for(let e in projectList[indexOfProject].taskList){
+                    if(x == projectList[indexOfProject].taskList[e].taskId ){
+                        projectList[indexOfProject].taskList[e].taskName = form.taskname.value
+                        projectList[indexOfProject].taskList[e].assigneeName = form.selectAssigneeNames.value
+                        projectList[indexOfProject].taskList[e].status = form.status.value
+                        projectList[indexOfProject].taskList[e].assignDate = form.assignDate.value
+                        projectList[indexOfProject].taskList[e].dueDate = form.dueDate.value
+                        projectList[indexOfProject].taskList[e].priority = form.priority.value
+                        projectList[indexOfProject].taskList[e].progress = form.progress.value
+                        localStorage.setItem("project", JSON.stringify(projectList))
+                        tasks = projectList[indexOfProject].taskList
+                        showListTask(tasks)
+                        break
+                    }
+                }
+            })
 
             // btnE.addEventListener("click")
             
@@ -326,3 +380,81 @@ function searchTask (){
     })
 }
 searchTask();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
