@@ -49,7 +49,7 @@ function showListProject(project){
                                 >Sửa</button>
                             <button onclick="deleteProject(${element.id})" class="btn btn-danger col-3" type="button" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">Xóa</button>
-                            <a onclick="saveTask(${index})" class="btn btn-primary col-5" href="./chitietduan.html" >Chi Tiết</a>
+                            <a onclick="saveTask(${index} , ${element.id})" class="btn btn-primary col-5" href="./chitietduan.html" >Chi Tiết</a>
                         </td>
                     </tr>
         `
@@ -92,22 +92,26 @@ function deleteProject(id){
     })
 }
 
-
+let divAOE = document.getElementById("btnAOE")
 // thêm mới và sửa
 function addorchange(x){
+    divAOE.innerHTML = "";
     let form = document.getElementById("form")
-    let send1 = document.getElementById("submit1")
-    let send2 = document.getElementById("submit2")
-
+    // let send1 = document.getElementById("submit1")
+    // let send2 = document.getElementById("submit2")
+    
     let eProject = document.getElementById("eProject")
     let eDescription = document.getElementById("eDescription")
-
+    
     if(x == -1){
+        divAOE.innerHTML = `
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="submit1">Lưu mới</button>
+        `
+        let send1 = document.getElementById("submit1")
         let check = 0;
         let checkExist = 1;
-
-        send2.style.display = "none"
-        send1.style.display = "block"
+        form.reset()
         send1.addEventListener("click", ()=>{
             // lay noi dung các input và validat giá trị
             let newProject = form.project.value;
@@ -166,70 +170,45 @@ function addorchange(x){
             // thêm vào project
         })
     }else{
+        divAOE.innerHTML = `
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="submit2">Lưu thay đổi</button>
+        `
+        let send2 = document.getElementById("submit2")
         // sua project name 
-        send1.style.display = "none"
-        send2.style.display = "block"
+        // send1.style.display = "none"
+        // send2.style.display = "block"
         eDescription.textContent =""
-        eProject.textContent =""
-        // console.log(x);
-        // let checksearch = 0;
-
-        // đưa name and description vào ô input
-        for(let element of project){
+        eProject.textContent = ""
+        let temp = ""
+        project.forEach(element =>{
             if(element.id == x){
-                form.project.value = element.projectName;
-                form.description.value = element.description;
-                break;
+                form.project.value = element.projectName
+                form.description.value = element.description
             }
-        }
-
-        // submit => validate => save
-        send2.addEventListener("click",() =>{
-            let checkExist = 1;
-            let check = 0;
-            // validate
-            let projectName = form.project.value
-            let description = form.description.value
-            // validate name project
-            if(projectName == "" && projectName.length > 50){
-                eProject.textContent = "Không được bỏ trống và giới hạn 50 ký tự"
-            }else{
-                // kiem tra xem projectname co trung lap khong
-                projectList.forEach((element) => {
-                    if(element.id != x ){
-                        console.log(x, element.id);
-                        if(projectName == element.projectName){
-                            console.log(project, element.projectName);
-                            checkExist = 0;
-                        }
-                    }
-                });
-                // kiem tra ton tai = 0 thi se trung lap va in ra ko thi thoi
-                if(checkExist == 0){
-                    eProject.textContent = "Tên dự án không được trùng"
+        })
+        // nhận lệnh thay đổi
+        send2.addEventListener("click" , ()=>{
+            let checkCount = 1;
+            for(let element of project){
+                if(element.id === x){
+                    continue
                 }else{
-                    eProject.textContent ="";
-                    check ++;
+                    if(element.projectName == form.project.value ){
+                        checkCount = 0
+                        eProject.textContent = "tên dự án không được trùng với dự án khác"
+                        break
+                    }
                 }
             }
-            // validate description
-            if(description == "" || description.length > 100){
-                eDescription.textContent = "Không được bỏ trống mô tả và giới hạn 100 ký tự"
-            }else{
-                check++;
-            }
-
-            if(check == 2){
-                projectList.forEach((element, index) => {
-                    if(element.id == x){
-                        projectList[index].projectName = projectName
-                        projectList[index].description = description
+            if(checkCount == 1){
+                projectList.forEach((element, index) =>{
+                    if(element.id === x){
+                        projectList[index].projectName = form.project.value
+                        createProject();
+                        showListProject(project)
                     }
-                });
-                createProject();
-                console.log(project);
-                localStorage.setItem("project", JSON.stringify(projectList))
-                showListProject(project);
+                })
             }
         })
     }
@@ -259,23 +238,29 @@ let currentPage = 0;
 
 
 // luu vao session storage để khi bấm vào chi tiết dự án nó sẽ có dữ liệu của các task trong project
-let task = new Array();
-function saveTask(x){
-    projectList[x].taskList.forEach((e, index) =>{
-        task.push({
-            taskId : index+1,
-            taskName: e.taskName,
-            assigneeId: e.assigneeId,
-            projectId: projectList[x].id,
-            assignDate: e.assignDate,
-            dueDate: e.dueDate,
-            priority: e.priority,
-            progress: e.progress,
-            status: e.status,
-        })
-    })
+
     // sessionStorage.clear()
-    sessionStorage.setItem("taskList", JSON.stringify(task))
-    sessionStorage.setItem("indexOfProject", JSON.stringify(x))
-}
+    // sessionStorage.setItem("taskList", JSON.stringify(task))
+    // sessionStorage.setItem("indexOfProject", JSON.stringify(x))
+
 // omg it's so complex i can't understand that
+function saveTask(index , id){
+    // sessionStorage.clear()
+    // lưu index ở ss storage
+    let task = project[index].taskList
+    if(task ){
+        sessionStorage.setItem("taskList", JSON.stringify(task))
+    }
+    else{
+        task = new Array()
+        sessionStorage.setItem("taskList", JSON.stringify(task))
+    }
+
+    let indexOfProject
+    projectList.forEach((element, i) =>{
+        if(id == element.id){
+            indexOfProject = i
+        }
+    })
+    sessionStorage.setItem("indexOfProject", JSON.stringify(indexOfProject))
+}

@@ -7,12 +7,12 @@
 ========================================================================================
 
 ===================task=================
-1. id => id nhiệm vụ
-2. taskname => tên nhiệm vụ
+1. taskId => id nhiệm vụ
+2. taskName => tên nhiệm vụ
 (form)
-3. assigneeId => id người được giao nhiệm vụ 
-(dựa vào user trong account và projectList.member để lấy ra đối tượng id là thành viên của dự án )
-4. projectId => id dự án
+3. assigneeid ==> assigneeName => id người được giao nhiệm vụ 
+(dựa vào member trong projectList.member để lấy ra đối tượng id và thông qua account để lấy assigneeName là thành viên của dự án)
+4. projectId => id dự án // có sẳn nên không cần thiết
 (dựa vào id của các phần tử trong projectList => từ đó lấy ra được các tp của 1 đối tượng dự án)
 5. assignDate => ngày giao
 (form)
@@ -20,7 +20,7 @@
 (form)
 7. Priority => mức độ ưu tiên
 (form) ==> <<"Thấp" || "Trung bình" || "Cao">>
-8. progress => tiến độ 
+8. progress => tiến độ
 (form) ==> <<"Đúng tiến độ" || "Có rủi ro" || "Trể hạn">>
 9. status => trạng thái nhiệm vụ
 (form) ==> <<To do || In Progress || Pending || Done>>

@@ -1,0 +1,4 @@
+- thêm thành viên mới vào 1 dự án với vai trò gì đó
+- thành viên này sẽ hiển thị ở ngoài và trong form thêm nhiệm vụ
++ ở 1 góc có các thành viên của dự án
++ ở form thêm nhiệm vụ có người phụ trách

@@ -24,7 +24,7 @@ if(i == 0 || i == null || i == undefined){
         ],},
         {id: 3, projectName: "Xây dựng wedsite thương mại điệử",
             member: [{userId: 1, role: "project owner"}],taskList: [
-            {assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-3-26", dueDate: "2025-4-1", priority: "thap", progress: "dung tien do", status: "To do"},
+            {assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-3-26", dueDate: "2025-4-1", priority: "thap", progress: "dung tien do", status: "Pending"},
         ],},
     ];
 

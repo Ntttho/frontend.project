@@ -1,0 +1,21 @@
+{
+    "taskId": 1,
+    "taskName": "soan thao de cuong",
+    "assigneeId": 1,
+    "projectId": 3,
+    "assignDate": "2025-3-26",
+    "dueDate": "2025-4-1",
+    "priority": "thap",
+    "progress": "dung tien do",
+    "status": "Pending",
+    "assigneeName": "nguyen ta tho"
+}
+form.
+//==============//
+taskname
+selectAssigneeNames
+status
+assignDate
+dueDate
+priority
+progress
