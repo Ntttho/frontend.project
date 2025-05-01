@@ -88,6 +88,9 @@ function showListProject(project){
 showListProject(project);
 
 function deleteProject(id){
+    let deleteProject = document.getElementById("deleteProject")
+    deleteProject.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="delete" data-bs-dismiss="modal">Xóa</button>`
     let del = document.getElementById("delete");
     del.addEventListener("click", ()=>{
         projectList = projectList.filter(element => element.id != id);
@@ -167,7 +170,7 @@ function addorchange(x){
                 projectList.push({id, projectName: newProject, description, "member": [owner]});
                 showListProject(project);
                 // console.log("thanh cong");
-                window.alert("them moi thanh cong")
+                // window.alert("them moi thanh cong")
 
                 form.reset();
                 // project[project.length - 1]["member"].push(member)

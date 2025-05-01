@@ -90,10 +90,10 @@ console.log(confirmPassword == password ? 1 : 2);
         form.reset();
         const s = new Date();
         let id = s.getTime();
-        alert("Chúc mừng bạn đăng ký thành công!")
+        // alert("Chúc mừng bạn đăng ký thành công!")
         accountList.push({id, name, email, password});
         localStorage.setItem("account", JSON.stringify(accountList));
-        location.assign("../phuj/quanlyduan.html");
+        location.assign("../phuj/login.html");
     }
     // console.log({name, email, password, confirmPassword});
 })

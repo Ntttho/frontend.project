@@ -47,7 +47,7 @@ done.innerHTML = `<tr>
 
 
 
-tasks.forEach((element, index) =>{
+projectList[indexOfProject].taskList.forEach((element, index) =>{
     
     // lấy ra tên người phụ trách
     
@@ -138,6 +138,10 @@ showListTask(tasks)
 
 // tasks.filter
 function deleteTask (id){
+    let divDeleteTask = document.getElementById("btndeleteTask")
+    divDeleteTask.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDelete">xác nhận
+                    xóa</button>`
     let btnDelete = document.getElementById("confirmDelete")
     btnDelete.addEventListener("click" , ()=>{
         tasks = tasks.filter(element => element.taskId != id)
@@ -206,6 +210,7 @@ function addOrEdit(x){
 
     // tao điều kiện vào trường hợp sửa hoặc xóa
     if(x == -1){
+        form.reset()
         //
         btnEOA.innerHTML = `
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
@@ -348,15 +353,25 @@ function addOrEdit(x){
                 //sua nhiem vu
                 for(let e in projectList[indexOfProject].taskList){
                     if(x == projectList[indexOfProject].taskList[e].taskId ){
+
+                        for(let a of account){
+                            if(a.name == form.selectAssigneeNames.value){
+                                projectList[indexOfProject].taskList[e].assigneeId = a.id
+                            }
+                        }
+
                         projectList[indexOfProject].taskList[e].taskName = form.taskname.value
-                        projectList[indexOfProject].taskList[e].assigneeName = form.selectAssigneeNames.value
                         projectList[indexOfProject].taskList[e].status = form.status.value
                         projectList[indexOfProject].taskList[e].assignDate = form.assignDate.value
                         projectList[indexOfProject].taskList[e].dueDate = form.dueDate.value
                         projectList[indexOfProject].taskList[e].priority = form.priority.value
                         projectList[indexOfProject].taskList[e].progress = form.progress.value
-                        localStorage.setItem("project", JSON.stringify(projectList))
+                        projectList[indexOfProject].taskList[e].assigneeName = ""
                         tasks = projectList[indexOfProject].taskList
+                        localStorage.setItem("project", JSON.stringify(projectList))
+                        console.log("pro1",projectList[indexOfProject].taskList[e]);
+                        console.log("pro2",projectList[indexOfProject].taskList);
+                        console.log("tasks:", tasks);
                         showListTask(tasks)
                         break
                     }
@@ -381,42 +396,197 @@ function searchTask (){
 }
 searchTask();
 
+function showMember(){
+    let check = 0;
+    let memberDiv = document.getElementById("member")
+    memberDiv.innerHTML = ""
+    projectList[indexOfProject].member.forEach((element, index) =>{
+        if(element.role == "project owner"){
+            let name = ""
+            for(let x of accountList){
+                if(x.id == element.userId){
+                    projectList[indexOfProject].member[index].name = x.name
+                    projectList[indexOfProject].member[index].email = x.email
+                    check++;
+                    break
+                }
+            }
+            // accountList.forEach(el =>{
+                //     if(element.userId == el.id){
+            //         projectList[indexOfProject].member[index].name = el.name
+            //     }
+            // })
+            memberDiv.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="avt ">AN</div>
+                            <div>
+                                <h6>${element.name}</h6>
+                                <p>${element.role}</p>
+                        </div>
+                    </div>
+            `
+        }
+        
+        if(check == 2){
+            return;
+        }
+    })
+    memberDiv.innerHTML += `<div class="d-flex justify-content-between align-items-center">
+                <button onclick="showfullMember()" class="avt btn bg-secondary d-flex justify-content-between align-items-center" type="button"
+        data-bs-toggle="modal" data-bs-target="#modal3">ooo</button>
+            </div>`
+}
+
+showMember()
+
+function showfullMember(){
+    let modalMember = document.getElementById("modalMember")
+    // console.log(modalMember);
+    modalMember.innerHTML = ''
+    projectList[indexOfProject].member.forEach((element, index) =>{
+        for(let x of accountList){
+            if(x.id == element.userId){
+                projectList[indexOfProject].member[index].name = x.name
+                projectList[indexOfProject].member[index].email = x.email
+                break
+            }
+        }
+
+        modalMember.innerHTML+= `
+                        <tr>
+                            <td>
+                                <div class="avt">AVT</div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <h5>${element.name}</h5>
+                                    <p>${element.email}</p>
+                                </div>
+                            </td>
+                            <td class="">
+                                <p class="border">${element.role}</p>
+                            </td>
+
+                            <td><td><i onclick="deleteMember(${element.userId})" class="fa-solid fa-trash btn text-danger"></i></td>
+</td>
+                        </tr>`
+    })
+}
+
+function addnewMember( x ){
+    if(x == 1){
+        let form = document.getElementById("addmember")
+        form.reset()
+        let ftadd = document.getElementById("ftadd")
+        ftadd.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy </button>
+                    <button id="addNewMember" type="button" class="btn btn-primary">Lưu</button>`
+        let add = document.getElementById('addNewMember')
+
+        
+        let eEmailMember = document.getElementById("eEmailMember")
+        eEmailMember.textContent = ""
+        let eRole = document.getElementById("eRole")
+        eRole.textContent = ""
+        
+        
+        add.addEventListener('click', ()=>{
+            let email = form.email.value
+            let role = form.role.value
+            
+            //valiudate
+            let check = 0;
+            let indexOfAccount = 0
+            // 1. email và role không được để trống
+            // 2. thành viên thêm vào phải chưa có trong danh sách thành viên
+            // 3. Email phải đúng định dạng
+            // 4. hiển thị lỗi khi thông tin thành viên không hợp lệ
+            // 5. thêm mới thành viên khi ẩn nút lưu lại trên modal
+            
+            // email
+            if(email == ""){
+                eEmailMember.textContent = "Email không được để trống"
+            }else if(!checkEmail(email)){
+                eEmailMember.textContent = "Email không đúng yêu cầu định dạng"
+            } else{
+                for(let element of projectList[indexOfProject].member){
+                    if(element.email == email){
+                        eEmailMember.textContent = "thành viên này đã tồn tại trong dự án dồi"
+                        check = 0
+                        break;
+                    }else{
+                        eEmailMember.textContent = ""
+                        check = 1
+                    }
+                }
+            }
+
+            // role
+            if(role == ""){
+                eRole.textContent = "Vai trò không được để trống"
+            }else{
+                eRole.textContent = ""
+                check++;
+            }
+
+            if(check == 2){
+                for(let element of account){
+                    if(element.email == email){
+                        let ob = {email: element.email, userId: element.id, name: element.name, role: role}
+                        projectList[indexOfAccount].member.push(ob)
+                        localStorage.setItem("project", JSON.stringify(projectList))
+                        showMember()
+                        form.reset()
+                        break
+                    }else{
+                        check = 3
+                    }
+                }
+            }
+            if(check == 3){
+                eEmailMember.textContent = "Email này không tồn tại"
+            }
+            
+        })
+    }
+}
 
 
 
 
 
+function checkEmail(email) {
+    if (email.length >= 60) {
+    return false;
+    }
 
+    if (!email.includes("@gmail")) {
+    return false;
+    }
 
+    if (!email.endsWith(".com") && !email.endsWith(".vn")) {
+    return false;
+    }
 
+    const checkcheck = /^[a-zA-Z0-9._-]+@gmail\.(com|vn)$/;
+    if (!checkcheck.test(email)) {
+    return false;
+    }
 
+    return true;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function deleteMember(id){
+    
+    let btnDeleteMember = document.getElementById("modalDeleteMember")
+    console.log("hello anh em");
+    console.log(id);
+    console.log(projectList[indexOfProject].member);
+    
+    // projectList[indexOfProject].member = projectList[indexOfProject].member.filter(element =>{element.userId != id && element.role != projectList })
+    // localStorage.setItem("project", JSON.stringify(projectList))
+    showMember()
+    // showfullMember()
+}
 
 
 
