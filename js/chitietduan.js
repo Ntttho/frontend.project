@@ -467,13 +467,15 @@ function showfullMember(){
                                 <p class="border">${element.role}</p>
                             </td>
 
-                            <td><td><i onclick="deleteMember(${element.userId})" class="fa-solid fa-trash btn text-danger"></i></td>
+                            <td><td><i type="button" data-bs-toggle="modal"
+                    data-bs-target="#modal33" onclick="deleteMember(${element.userId})" class="fa-solid fa-trash btn text-danger"></i></td>
 </td>
                         </tr>`
     })
 }
 
 function addnewMember( x ){
+
     if(x == 1){
         let form = document.getElementById("addmember")
         form.reset()
@@ -495,6 +497,7 @@ function addnewMember( x ){
             
             //valiudate
             let check = 0;
+            let checkExist = 0;
             let indexOfAccount = 0
             // 1. email và role không được để trống
             // 2. thành viên thêm vào phải chưa có trong danh sách thành viên
@@ -508,16 +511,20 @@ function addnewMember( x ){
             }else if(!checkEmail(email)){
                 eEmailMember.textContent = "Email không đúng yêu cầu định dạng"
             } else{
+                // kiem tra ton tai
                 for(let element of projectList[indexOfProject].member){
                     if(element.email == email){
                         eEmailMember.textContent = "thành viên này đã tồn tại trong dự án dồi"
-                        check = 0
+                        checkExist = 1
                         break;
-                    }else{
-                        eEmailMember.textContent = ""
-                        check = 1
                     }
                 }
+            }
+            if(checkExist == 0){
+                eEmailMember.textContent = ""
+                check++; // 1
+            }else{
+                eEmailMember.textContent = "thành viên này đã tồn tại trong dự án dồi"
             }
 
             // role
@@ -525,7 +532,7 @@ function addnewMember( x ){
                 eRole.textContent = "Vai trò không được để trống"
             }else{
                 eRole.textContent = ""
-                check++;
+                check++; // 2
             }
 
             if(check == 2){
@@ -533,17 +540,17 @@ function addnewMember( x ){
                     if(element.email == email){
                         let ob = {email: element.email, userId: element.id, name: element.name, role: role}
                         projectList[indexOfAccount].member.push(ob)
+                        console.log(projectList[indexOfAccount].member);
+                        checkExist = 2
                         localStorage.setItem("project", JSON.stringify(projectList))
                         showMember()
                         form.reset()
                         break
-                    }else{
-                        check = 3
                     }
                 }
-            }
-            if(check == 3){
-                eEmailMember.textContent = "Email này không tồn tại"
+                if(checkExist != 2){
+                    eEmailMember.textContent = "Email này không tồn tại"
+                }
             }
             
         })
@@ -575,56 +582,16 @@ function checkEmail(email) {
     return true;
 }
 
-function deleteMember(id){
-    
-    let btnDeleteMember = document.getElementById("modalDeleteMember")
-    console.log("hello anh em");
-    console.log(id);
-    console.log(projectList[indexOfProject].member);
-    
-    // projectList[indexOfProject].member = projectList[indexOfProject].member.filter(element =>{element.userId != id && element.role != projectList })
-    // localStorage.setItem("project", JSON.stringify(projectList))
-    showMember()
-    // showfullMember()
+function deleteMember(id, role){
+    let divDeleteMember = document.getElementById("divDeleteMember")
+    divDeleteMember.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" id="btnDeleteMember" class="btn btn-danger" data-bs-dismiss="modal">Lưu thay đổi</button>`
+    let btnDeleteMember = document.getElementById("btnDeleteMember")
+    btnDeleteMember.addEventListener("click" , ()=>{
+        // console.log(id);
+        // console.log(projectList[indexOfProject]);
+        // console.log(projectList[indexOfProject].member);        
+        projectList[indexOfProject].member = projectList[indexOfProject].member.filter(element =>{return (element.userId != id )})
+        showfullMember()
+    })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
