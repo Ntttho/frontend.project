@@ -14,9 +14,6 @@ let eConfirm = document.getElementById("eConfirm")
 
 
 
-
-
-
 form.addEventListener("submit", (e)=>{
     let check = 0;
     let checkAccount = 0;

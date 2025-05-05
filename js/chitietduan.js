@@ -468,7 +468,7 @@ function showfullMember(){
                             </td>
 
                             <td><td><i type="button" data-bs-toggle="modal"
-                    data-bs-target="#modal33" onclick="deleteMember(${element.userId})" class="fa-solid fa-trash btn text-danger"></i></td>
+                    data-bs-target="#modal33" class="fa-solid fa-trash btn text-danger"></i></td>
 </td>
                         </tr>`
     })
@@ -539,8 +539,8 @@ function addnewMember( x ){
                 for(let element of account){
                     if(element.email == email){
                         let ob = {email: element.email, userId: element.id, name: element.name, role: role}
-                        projectList[indexOfAccount].member.push(ob)
-                        console.log(projectList[indexOfAccount].member);
+                        projectList[indexOfProject].member.push(ob)
+                        console.log(projectList[indexOfProject].member);
                         checkExist = 2
                         localStorage.setItem("project", JSON.stringify(projectList))
                         showMember()
@@ -582,16 +582,3 @@ function checkEmail(email) {
     return true;
 }
 
-function deleteMember(id, role){
-    let divDeleteMember = document.getElementById("divDeleteMember")
-    divDeleteMember.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" id="btnDeleteMember" class="btn btn-danger" data-bs-dismiss="modal">Lưu thay đổi</button>`
-    let btnDeleteMember = document.getElementById("btnDeleteMember")
-    btnDeleteMember.addEventListener("click" , ()=>{
-        // console.log(id);
-        // console.log(projectList[indexOfProject]);
-        // console.log(projectList[indexOfProject].member);        
-        projectList[indexOfProject].member = projectList[indexOfProject].member.filter(element =>{return (element.userId != id )})
-        showfullMember()
-    })
-}

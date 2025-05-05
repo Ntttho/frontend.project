@@ -14,8 +14,11 @@ let owner = {userId: user.id, role: "project owner"};
 //     {id: 3, projectName: "Học js và tiếp cận dự án",description:"hãy thật chăm và thật logic nó là gốc của backend đấy", member: [{userId: 1, role: "project Developer"}]},
 // ];
 
-let projectList = JSON.parse(localStorage.getItem("project"))
+let  countProductPerPage = 3;
+let currentPage = 0;
 
+let projectList = JSON.parse(localStorage.getItem("project"))
+let totalpages = 0
 let project = new Array()
 function createProject(){
         project = new Array()
@@ -26,6 +29,7 @@ function createProject(){
             }
         }
     })
+    totalpages = Math.ceil(project.length/countProductPerPage)
 }
 createProject()
 // let projectNode = [];
@@ -84,8 +88,44 @@ function showListProject(project){
     // })
     
     tbody.innerHTML = content;
+
+
+    // pagination hiển thị chân trang
+    let chan = document.getElementById("pagination")
+    chan.innerHTML = ""
+    // console.log(new Array(totalpages).fill(1));
+    
+    let pageHTML = new Array(totalpages).fill(1).reduce((temp,_ , index) => temp+ `<li class="page-item ${currentPage == index? 'active' :''}" onclick = "goToPage(${index})"><a class="page-link" href="#">${index + 1}</a></li>`, "")
+
+    pageHTML = `
+        <li class="page-item ${currentPage == 0?'disabled':''}" onclick="prevPage()">
+            <a class="page-link">&lt;</a>
+        </li>
+        ${pageHTML}
+        <li class="page-item ${currentPage == totalpages-1?'disabled':''}" onclick="nextPage()">
+            <a class="page-link">></a>
+        </li>
+        `
+    chan.innerHTML = pageHTML
 }
 showListProject(project);
+
+function nextPage (){
+    if(currentPage < totalpages - 1){
+        currentPage++;
+        showListProject(paginationProject(currentPage))
+        console.log(currentPage)
+    }
+}
+function prevPage(){
+    if(currentPage > 0){
+        currentPage-- 
+        showListProject(paginationProject(currentPage))
+    }
+}
+
+
+
 
 function deleteProject(id){
     let deleteProject = document.getElementById("deleteProject")
@@ -168,7 +208,7 @@ function addorchange(x){
                 let id = max;
                 project.push({id, projectName: newProject, description, "member": [owner]});
                 projectList.push({id, projectName: newProject, description, "member": [owner]});
-                showListProject(project);
+                window.location.reload();
                 // console.log("thanh cong");
                 // window.alert("them moi thanh cong")
 
@@ -216,8 +256,9 @@ function addorchange(x){
                 projectList.forEach((element, index) =>{
                     if(element.id === x){
                         projectList[index].projectName = form.project.value
-                        createProject();
-                        showListProject(project)
+                        projectList[index].description = form.project.description
+                        localStorage.setItem("project", JSON.stringify(projectList))
+                        window.location.reload();
                     }
                 })
             }
@@ -229,13 +270,12 @@ function search(){
     let inputSearch = document.getElementById("inputsearch")
     inputSearch.addEventListener("change", ()=>{
         let duan = project.filter(element => element.projectName.includes(inputSearch.value))
-        showListProject(duan);
+        showListProject(project)
     })
 }
 search();
 
-let  countProductPerPage = 2;
-let currentPage = 0;
+
 
 // const paginationProduct = (page)=>{
 //     let startIndex = page*countProductPerPage
@@ -267,3 +307,22 @@ function saveTask(index , id){
     })
     sessionStorage.setItem("indexOfProject", JSON.stringify(indexOfProject))
 }
+
+
+// phan trang
+
+
+function paginationProject(page){
+    let startIndex = page*countProductPerPage
+    let endIndex = startIndex + countProductPerPage
+    return project.slice(startIndex, endIndex)
+}
+
+showListProject(paginationProject(currentPage))
+
+function goToPage (page){
+    currentPage = page
+    showListProject(paginationProject(currentPage))
+}
+
+// the phan trang
