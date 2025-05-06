@@ -57,14 +57,14 @@ function showListTask(duan){
                 break;
             }
         }
-        project.taskList.forEach(task =>{
+        project.taskList.forEach((task) =>{
             let taskTR = ""
             if(task.assigneeId == user.id){
                 projectTable.innerHTML += `
                 <tr>
                         <td>${task.taskName}</td>
                         <td class="text-center"><span class="${(task.priority == "thap") ? "bg-info" : (task.priority == "cao") ? "bg-danger" : (task.priority == "trung binh") ? "bg-warning" : ""} p-1 rounded  fw-bold  text-light  p-1 rounded  fw-bold  text-light ">${task.priority}</span>
-                        <td class="text-center" >${task.status} <span type="button" class="btn btn" data-bs-toggle="modal"
+                        <td class="text-center" >${task.status} <span onclick="edit(${project.id}, ${task.taskId})" type="button" class="btn btn" data-bs-toggle="modal"
                                 data-bs-target="#modal"> <i class="fas fa-pencil-alt"></i></span>
                         </td>
                         <td class="text-info-emphasis text-center">${task.assignDate}</td>
@@ -96,3 +96,33 @@ function search(){
     showListTask(tempProject)
 }
 // console.log("helji", projectList[0].taskList);
+function edit(projectid ,taskid){
+    document.getElementById("ftdiv").innerHTML =`
+    
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="save">Xác nhận</button>`
+
+
+    let accept = document.getElementById("save")
+    accept.addEventListener("click", ()=>{
+        projectList.forEach((project, indexProject) =>{
+            if(project.id == projectid){
+                project.taskList.forEach((task, indexTask) =>{
+                    if(task.taskId == taskid){
+                        // swap
+                        if(projectList[indexProject].taskList[indexTask].status == "In Progress")
+                            projectList[indexProject].taskList[indexTask].status = "Pending"
+                        else if(projectList[indexProject].taskList[indexTask].status == "Pending")
+                            projectList[indexProject].taskList[indexTask].status = "In Progress"
+                        else{
+                            return 1
+                        }
+                        localStorage.setItem("project", JSON.stringify(projectList))
+                        showListTask(projectList)
+                        return 1
+                    }
+                })
+            }
+        })
+    })
+}
