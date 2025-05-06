@@ -136,7 +136,7 @@ function deleteProject(id){
         projectList = projectList.filter(element => element.id != id);
         localStorage.setItem("project", JSON.stringify(projectList))
         createProject();
-        showListProject(project);
+        showListProject(paginationProject(currentPage));
         // console.log(project);
     })
 }
@@ -268,9 +268,12 @@ function addorchange(x){
 
 function search(){
     let inputSearch = document.getElementById("inputsearch")
+
+    
     inputSearch.addEventListener("change", ()=>{
+        
         let duan = project.filter(element => element.projectName.includes(inputSearch.value))
-        showListProject(project)
+        showListProject(duan)
     })
 }
 search();

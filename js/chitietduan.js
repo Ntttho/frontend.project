@@ -179,7 +179,6 @@ function addOrEdit(x){
     projectList[indexOfProject]["member"].forEach(element =>{
         accountList.forEach(e =>{
             console.log(e.id, element.userId, e.name);
-            
             if(e.id == element.userId){
                 selectName.innerHTML += `<option value="${e.name}">${e.name}</option>`
             }
@@ -401,16 +400,20 @@ function showMember(){
     let memberDiv = document.getElementById("member")
     memberDiv.innerHTML = ""
     projectList[indexOfProject].member.forEach((element, index) =>{
+        if(check >= 2){
+            return;
+        }
         if(element.role == "project owner"){
             let name = ""
+            // cap nhap
             for(let x of accountList){
                 if(x.id == element.userId){
                     projectList[indexOfProject].member[index].name = x.name
                     projectList[indexOfProject].member[index].email = x.email
-                    check++;
                     break
                 }
             }
+            check++;
             // accountList.forEach(el =>{
                 //     if(element.userId == el.id){
             //         projectList[indexOfProject].member[index].name = el.name
@@ -425,16 +428,13 @@ function showMember(){
                         </div>
                     </div>
             `
-        }
-        
-        if(check == 2){
-            return;
+            console.log("check", check);
         }
     })
     memberDiv.innerHTML += `<div class="d-flex justify-content-between align-items-center">
-                <button onclick="showfullMember()" class="avt btn bg-secondary d-flex justify-content-between align-items-center" type="button"
-        data-bs-toggle="modal" data-bs-target="#modal3">ooo</button>
-            </div>`
+    <button onclick="showfullMember()" class="avt btn bg-secondary d-flex justify-content-between align-items-center" type="button"
+    data-bs-toggle="modal" data-bs-target="#modal3">ooo</button>
+    </div>`
 }
 
 showMember()
