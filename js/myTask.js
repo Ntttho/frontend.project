@@ -24,12 +24,12 @@ projectList.forEach((project, index) =>{
         project.taskList.forEach((task, ind) =>{
             
             for(let member of project.member){
-                if(member.userId == task.assigneeId){
-                    projectList[index].taskList[ind].assigneeName = member.name
-                    break
-                }
                 if(member.name == task.assigneeName){
                     projectList[index].taskList[ind].assigneeId = member.userId
+                    break
+                }
+                if(member.userId == task.assigneeId){
+                    projectList[index].taskList[ind].assigneeName = member.name
                     break
                 }
             }

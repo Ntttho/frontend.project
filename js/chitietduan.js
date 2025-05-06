@@ -4,7 +4,7 @@
 //account
 
 let indexOfProject = JSON.parse(sessionStorage.getItem("indexOfProject"))
-console.log(indexOfProject);
+// console.log(indexOfProject);
 
 let projectList = JSON.parse(localStorage.getItem("project"))
 let account = JSON.parse(localStorage.getItem("account"))
@@ -17,11 +17,9 @@ if(projectList[indexOfProject].taskList === undefined){
     // console.log(1);
 }else{
     tasks = projectList[indexOfProject].taskList
-    console.log(projectList[indexOfProject].taskList);
+    // console.log(projectList[indexOfProject].taskList);
 }
 
-console.log(projectList[indexOfProject].taskList)
-console.log(tasks);
 
 
 // lấy ra nút xác nhận xóa html
@@ -51,19 +49,22 @@ projectList[indexOfProject].taskList.forEach((element, index) =>{
     
     // lấy ra tên người phụ trách
     
-    let assigneeName = ""
-    for(let e of account){
-        if(element.assigneeId == e.id || element.assigneeName != ""){
-            assigneeName = e.name;
-            break
-        }
-    }
+    // let assigneeName = ""
+    // for(let e of account){
+    //     if(element.assigneeId == e.id || element.assigneeName != ""){
+    //         assigneeName = e.name;  
+    //         // console.log(e.name);
+    //         break
+    //     }
+    // }
     // luu vao tasks assigneeName
-    tasks[index]["assigneeName"] = assigneeName
+    // tasks[index]["assigneeName"] = assigneeName
+
     let startDate = new Date(element.assignDate)
     // console.log(startDate);
     let endDate = new Date(element.dueDate)
     // console.log(endDate);
+    console.log(projectList[indexOfProject].taskList);
     
     if(element.status == "To do"){
         todo.innerHTML += `<tr>
@@ -84,7 +85,7 @@ projectList[indexOfProject].taskList.forEach((element, index) =>{
     }else if(element.status == "In Progress"){
         inProgress.innerHTML += `<tr>
                         <td>${element.taskName}</td>
-                        <td class="text-center">${assigneeName}</td>
+                        <td class="text-center">${element.assigneeName}</td>
                         <td class="text-center">
                             <span class="${(element.priority == "thap") ? "bg-info" : (element.priority == "cao") ? "bg-danger" : (element.priority == "trung binh") ? "bg-warning" : ""} p-1 rounded  fw-bold  text-light ">${element.priority}</span>
                         </td>
@@ -100,7 +101,7 @@ projectList[indexOfProject].taskList.forEach((element, index) =>{
     }else if(element.status == "Pending"){
         pending.innerHTML += `<tr>
                         <td>${element.taskName}</td>
-                        <td class="text-center">${assigneeName}</td>
+                        <td class="text-center">${element.assigneeName}</td>
                         <td class="text-center">
                             <span class="${(element.priority == "thap") ? "bg-info" : (element.priority == "cao") ? "bg-danger" : (element.priority == "trung binh") ? "bg-warning" : ""} p-1 rounded  fw-bold  text-light ">${element.priority}</span>
                         </td>
@@ -116,7 +117,7 @@ projectList[indexOfProject].taskList.forEach((element, index) =>{
     }else if(element.status == "Done"){
         done.innerHTML += `<tr>
                         <td>${element.taskName}</td>
-                        <td class="text-center">${assigneeName}</td>
+                        <td class="text-center">${element.assigneeName}</td>
                         <td class="text-center">
                             <span class="${(element.priority == "thap") ? "bg-info" : (element.priority == "cao") ? "bg-danger" : (element.priority == "trung binh") ? "bg-warning" : ""} p-1 rounded  fw-bold  text-light ">${element.priority}</span>
                         </td>
@@ -133,8 +134,14 @@ projectList[indexOfProject].taskList.forEach((element, index) =>{
 
 })
 
+
+
+
 }
-showListTask(tasks)
+
+
+
+showListTask(projectList[indexOfProject].taskList)
 
 // tasks.filter
 function deleteTask (id){
@@ -178,7 +185,7 @@ function addOrEdit(x){
     
     projectList[indexOfProject]["member"].forEach(element =>{
         accountList.forEach(e =>{
-            console.log(e.id, element.userId, e.name);
+            // console.log(e.id, element.userId, e.name);
             if(e.id == element.userId){
                 selectName.innerHTML += `<option value="${e.name}">${e.name}</option>`
             }
@@ -365,7 +372,15 @@ function addOrEdit(x){
                         projectList[indexOfProject].taskList[e].dueDate = form.dueDate.value
                         projectList[indexOfProject].taskList[e].priority = form.priority.value
                         projectList[indexOfProject].taskList[e].progress = form.progress.value
-                        projectList[indexOfProject].taskList[e].assigneeName = ""
+                        projectList[indexOfProject].taskList[e].assigneeName = form.selectAssigneeNames.value
+
+                        projectList[indexOfProject].member.forEach(member =>{
+                            if(form.selectAssigneeNames.value == member.id){
+                                projectList[indexOfProject].taskList[e].assigneeId = member.id
+                            }
+                        })
+                        console.log("id",projectList[indexOfProject].taskList[e].assigneeId);
+                        
                         tasks = projectList[indexOfProject].taskList
                         localStorage.setItem("project", JSON.stringify(projectList))
                         console.log("pro1",projectList[indexOfProject].taskList[e]);
