@@ -479,15 +479,26 @@ function showfullMember(){
                                 </div>
                             </td>
                             <td class="">
-                                <p class="border">${element.role}</p>
+                                <input onchange="" class="${element.userId} userId" id="${element.userId}"></input>
+                                <i type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modal33" class="fa-solid fa-trash btn text-danger"></i>
                             </td>
-
-                            <td><td><i type="button" data-bs-toggle="modal"
-                    data-bs-target="#modal33" class="fa-solid fa-trash btn text-danger"></i></td>
-</td>
                         </tr>`
+                    })
+
+    projectList[indexOfProject].member.forEach(member =>{
+        
+        let temp = document.getElementById(`${member.userId}`)
+        if(temp != "null"){
+            temp.value = member.role
+        }
     })
+    let footerFullMember = document.getElementById("fullMember")
+    footerFullMember.innerHTML = `
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng </button>
+                <button onclick="saveChangeMember()" id="saveChangeMember" type="button" class="btn btn-primary">Lưu</button>`
 }
+
 
 function addnewMember( x ){
 
@@ -597,3 +608,18 @@ function checkEmail(email) {
     return true;
 }
 
+
+function saveChangeMember(){
+    let saveChangeMember = document.getElementById("saveChangeMember")
+        projectList[indexOfProject].member.forEach((member, index) =>{
+            let temp = document.getElementById(`${member.userId}`)
+                if(projectList[indexOfProject].member[index].role != 'project owner'){
+                    projectList[indexOfProject].member[index].role = temp.value
+                    console.log("luu thay doi nhe nhang",projectList[indexOfProject].member[index]);
+                    localStorage.setItem("project", JSON.stringify(projectList))
+                }
+            })
+
+
+
+}

@@ -149,3 +149,7 @@ td>span{
 .addOrEdit input, .addOrEdit select{
     width: 462px !important;
 }
+
+.userId{
+    max-width: 350px;
+}
