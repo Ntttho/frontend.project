@@ -25,6 +25,9 @@ if(projectList[indexOfProject].taskList === undefined){
 // lấy ra nút xác nhận xóa html
 // show 
 function showListTask (tasks){
+    console.log("task",tasks);
+    
+
     let todo = document.getElementById("todo")
     let inProgress = document.getElementById("inProgress")
     let pending = document.getElementById("pending")
@@ -45,7 +48,8 @@ done.innerHTML = `<tr>
 
 
 
-projectList[indexOfProject].taskList.forEach((element, index) =>{
+// projectList[indexOfProject].taskList.forEach((element, index) =>{
+tasks.forEach((element, index) =>{
     
     // lấy ra tên người phụ trách
     
@@ -406,6 +410,8 @@ function searchTask (){
         let content = inputSearch.value;
         let tempTask = tasks.filter(element => element.taskName.trim().includes(content.trim()));
         showListTask(tempTask);
+        console.log(tempTask);
+        
     })
 }
 searchTask();
@@ -619,7 +625,60 @@ function saveChangeMember(){
                     localStorage.setItem("project", JSON.stringify(projectList))
                 }
             })
-
-
-
 }
+
+// function searchTaskList(){
+//     let inputsearch = document.getElementById("inputsearch")
+// }
+
+
+
+//sắp xếp nhiệm vụ theo độ ưu tiên hoặc là theo hạn chót về
+function sortTaskList(){
+    // làm nó dài quá em sợ lỗi nên không làm
+}
+/*
+// tham khảo
+
+const myArray = [
+    { id: 1, name: "Item A", status: "so2" },
+    { id: 2, name: "Item B", status: "so1" },
+    { id: 3, name: "Item C", status: "so3" },
+    { id: 4, name: "Item D", status: "so2" },
+    { id: 5, name: "Item E", status: "so1" },
+    { id: 6, name: "Item F", status: "so3" },
+];
+
+myArray.sort((a, b) => {
+  // Xác định thứ tự ưu tiên của status
+    const order = {
+    so1: 1,
+    so2: 2,
+    so3: 3,
+    };
+
+    const statusA = a.status;
+    const statusB = b.status;
+
+    // So sánh dựa trên thứ tự ưu tiên
+    if (order[statusA] < order[statusB]) {
+    return -1; // a nên đứng trước b
+    }
+    if (order[statusA] > order[statusB]) {
+    return 1;  // a nên đứng sau b
+    }
+  return 0;    // a và b có thứ tự ưu tiên bằng nhau
+});
+
+console.log(myArray);
+/*
+Kết quả mong đợi:
+[
+    { id: 2, name: 'Item B', status: 'so1' },
+    { id: 5, name: 'Item E', status: 'so1' },
+    { id: 1, name: 'Item A', status: 'so2' },
+    { id: 4, name: 'Item D', status: 'so2' },
+    { id: 3, name: 'Item C', status: 'so3' },
+    { id: 6, name: 'Item F', status: 'so3' }
+]
+*/

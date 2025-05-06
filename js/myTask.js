@@ -39,10 +39,10 @@ projectList.forEach((project, index) =>{
 })
 
 
-function showListTask(){
+function showListTask(duan){
     let projectTable = document.getElementById("Project")
     projectTable.innerHTML = ""
-    projectList.forEach(project =>{
+    duan.forEach(project =>{
         for(let member of project.member){
             if(member.email == user.email){
 
@@ -77,5 +77,22 @@ function showListTask(){
     })
 }
 
-showListTask()
+showListTask(projectList)
+
+
+function search(){
+    let inputSearch = document.getElementById("inputsearch")
+    let content = inputSearch.value.trim()
+    console.log(content);
+    
+    let tempProject = new Array()
+    projectList.forEach(project =>{
+        for(let task of project.taskList){
+            if(task.taskName.includes(content) && task.assigneeId == user.id ){
+                tempProject.push(project)                
+            }
+        }
+    })
+    showListTask(tempProject)
+}
 // console.log("helji", projectList[0].taskList);

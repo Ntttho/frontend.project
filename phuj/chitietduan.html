@@ -65,8 +65,10 @@
 
             </div>
             <div class="div2-3">
-                <select name="" id="">
-                    <option>sắp xếp theo</option>
+                <select onchange="sortTaskList" name="" id="">
+                    <option value="null">sắp xếp theo</option>
+                    <option value="ưu tiên">Độ ưu tiên</option>
+                    <option value="hạn chót">Hạn chót</option>
                 </select>
                 <input type="text" class="inputsearch" id="inputsearch" placeholder="Tìm kiếm nhiệm vụ">
             </div>
@@ -326,7 +328,7 @@
                             <td>
                                 <div class="d-flex flex-column">
                                     <h5>Bach nguyen</h5>
-                                    <p>nguyenvanbach@gmail.com</p>
+                                    <p>nguyenvanbach@gmail.com</p>  
                                 </div>
                             </td>
                             <td>
