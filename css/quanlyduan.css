@@ -4,7 +4,9 @@
 }
 html, body{
     width: 100vw;
-    min-width: 1920px;
+    min-width: 1220px;
+    min-height: 700px;
+    height: auto;
 }
 body{
     display: flex;
@@ -14,7 +16,7 @@ body{
 }
 header{
     width: 100%;
-    min-width: 1920px;
+    min-width: 1220px;
     height: 56px;
     margin-bottom: 25px;
     background-color: black;
@@ -46,11 +48,11 @@ nav{
     color: aliceblue;
 }
 main{
-    width: 1320px
+    width: 1220px
 }
 .ft{
     width: 100%;
-    min-width: 1920px;
+    min-width: 1220px;
     height: 56px;
     font-size: 15px;
     display: flex;
@@ -68,4 +70,9 @@ main{
     height: 38px;
     border-radius: 5px;
     opacity: 0.6;
+}
+#mainContent{
+    min-width: 490px;
+    min-height: 400px;
+    height: auto;
 }

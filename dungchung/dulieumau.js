@@ -13,18 +13,18 @@ if(i == 0 || i == null || i == undefined){
 
     let project = [
         {id: 1,description:"hello" ,projectName: "Xây dựng wedsite thương mại điện tử",
-            member: [{userId: 1, role: "project owner"}], 
+            member: [{userId: 1, role: "project owner", name: "nguyen ta tho"}], 
             taskList: [
-                {taskId: 1, assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
+                {taskId: 1, assigneeId: 1, assigneeName: "nguyen ta tho", taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
             ],
         },
         {id: 2,description:"hello", projectName: "học lập trình frontend với html css và js", 
-            member: [{userId: 1, role: "project owner"}], taskList: [
-            {taskId: 1,assigneeId: 1, taskName: "Hoc cham hoc chi",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
+            member: [{userId: 1, role: "project owner", name: "nguyen ta tho"}], taskList: [
+            {taskId: 1,assigneeId: 1, assigneeName: "nguyen ta tho", taskName: "Hoc cham hoc chi",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "To do"},
         ],},
         {id: 3,description:"hello", projectName: "Xây dựng wedsite tử than" ,
-            member: [{userId: 1, role: "project owner"}],taskList: [
-            {taskId: 1,assigneeId: 1, taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "Pending"},
+            member: [{userId: 1, role: "project owner", name: "nguyen ta tho"}],taskList: [
+            {taskId: 1,assigneeId: 1, assigneeName: "nguyen ta tho", taskName: "soan thao de cuong",  assignDate: "2025-03-26", dueDate: "2025-04-01", priority: "thap", progress: "dung tien do", status: "Pending"},
         ],},
     ];
 

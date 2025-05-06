@@ -14,7 +14,7 @@ let owner = {userId: user.id, role: "project owner"};
 //     {id: 3, projectName: "Học js và tiếp cận dự án",description:"hãy thật chăm và thật logic nó là gốc của backend đấy", member: [{userId: 1, role: "project Developer"}]},
 // ];
 
-let  countProductPerPage = 3;
+let  countProductPerPage = 4;
 let currentPage = 0;
 
 let projectList = JSON.parse(localStorage.getItem("project"))

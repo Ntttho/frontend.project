@@ -4,7 +4,7 @@
 }
 html, body{
     width: 100vw;
-    min-width: 1920px;
+    min-width: 1220px;
 }
 body{
     display: flex;
@@ -14,7 +14,7 @@ body{
 }
 header{
     width: 100%;
-    min-width: 1920px;
+    min-width: 1220px;
     height: 56px;
     margin-bottom: 25px;
     background-color: black;
@@ -50,7 +50,7 @@ main{
 }
 .ft{
     width: 100%;
-    min-width: 1920px;
+    min-width: 1220px;
     height: 56px;
     font-size: 15px;
     display: flex;

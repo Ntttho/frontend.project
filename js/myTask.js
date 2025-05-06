@@ -1,8 +1,8 @@
 let user = JSON.parse(sessionStorage.getItem("account"))
 let account = JSON.parse(localStorage.getItem("account"))
-console.log(account);
+// console.log(account);
 
-console.log(user);
+// console.log(user);
 let projectList = JSON.parse(localStorage.getItem("project"))
 
 
@@ -78,4 +78,4 @@ function showListTask(){
 }
 
 showListTask()
-console.log("helji", projectList[0].taskList);
+// console.log("helji", projectList[0].taskList);
